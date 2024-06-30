@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 100vh; /* Asegura que el cuerpo ocupe al menos el 100% del viewport */
+    margin: 0;
+    padding: 20px;
+}
+
+form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+input{
+    width: 30%;
+}
+
+#todolist{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    border: 1px solid red;
+    margin: 10px;
+}
+
+#container{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    align-items:flex-end;
+}
+
+#resumenTareas {
+    width: 20%;
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-top: auto; /* Empuja el resumen hacia la parte inferior */
+}
+
+#listaTareas {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+#listaTareas li {
+    margin-bottom: 10px;
+}
+
+.realizado {
+    text-decoration: line-through;
+    color: gray;
+}
