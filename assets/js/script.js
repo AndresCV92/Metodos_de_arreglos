@@ -1,43 +1,54 @@
 // Arreglo inicial de tareas
 let tareas = [
-    { id: 1, descripcion: "Hacer la compra", realizada: false },
-    { id: 2, descripcion: "Estudiar para el examen", realizada: false },
-    { id: 3, descripcion: "Llamar al médico", realizada: false }
+    { id: 16, descripcion: "Hacer mercado", realizada: false },
+    { id: 60, descripcion: "Estudiar para la prueba", realizada: false },
+    { id: 24, descripcion: "Sacara a pasear a Tobby", realizada: false }
 ];
 
-const agregarTarea = document.getElementById('agregarTarea');
-const inputDescripcion = document.getElementById('descripcion');
+// Elementos del DOM
+const formularioAgregar = document.getElementById('agregar');
+const inputDescripcion = document.getElementById('nuevaTarea');
 const listaTareas = document.getElementById('listaTareas');
 const totalTareasElement = document.getElementById('totalTareas');
 const tareasRealizadasElement = document.getElementById('tareasRealizadas');
 
-// Función para renderizar la lista de tareas en el UI
+// Renderizar la lista de tareas
 function renderizarTareas() {
-    let html = ""; // Variable para almacenar el HTML dinámico
+    listaTareas.innerHTML = ''; 
 
-    tareas.forEach((tarea) => {
-        html += `
-            <li>
-                <span>${tarea.id} ${tarea.descripcion}</span>
-                <button onclick="marcarComoRealizada(${tarea.id})">Realizada</button>
-                <button onclick="borrarTarea(${tarea.id})">Eliminar</button>
-            </li>
+    tareas.forEach(tarea => {
+        const tareaElemento = document.createElement('li');
+        tareaElemento.innerHTML = `
+            <span>${tarea.id}</span>
+            <label>${tarea.descripcion}</label>
+            <input type="checkbox" ${tarea.realizada ? 'checked' : ''}>
+            <button class="eliminar-btn">X</button>
         `;
+
+        // Marcar como realizado
+        const checkbox = tareaElemento.querySelector('input[type="checkbox"]');
+        checkbox.addEventListener('change', () => {
+            marcarComoRealizada(tarea.id, checkbox.checked);
+        });
+
+        // Eliminar tarea
+        const botonEliminar = tareaElemento.querySelector('.eliminar-btn');
+        botonEliminar.addEventListener('click', () => {
+            borrarTarea(tarea.id);
+        });
+
+        listaTareas.appendChild(tareaElemento);
     });
 
-    listaTareas.innerHTML = html; // Insertamos el HTML en la lista de tareas
-
-    // Actualizar contador de tareas y tareas realizadas
     actualizarResumen();
 }
 
-// Función para agregar una nueva tarea desde el formulario
-agregarTarea.addEventListener('submit', function(event) {
-    event.preventDefault(); // Evita que se recargue la página al enviar el formulario
+// Función para agregar una nueva tarea 
+formularioAgregar.addEventListener('submit', function(event) {
+    event.preventDefault(); 
 
     const descripcion = inputDescripcion.value.trim();
-    if (descripcion === '') return; // Evitar tareas vacías
-
+    if (descripcion === '') return; 
     const nuevaTarea = {
         id: Date.now(),
         descripcion: descripcion,
@@ -45,38 +56,37 @@ agregarTarea.addEventListener('submit', function(event) {
     };
 
     tareas.push(nuevaTarea);
+    inputDescripcion.value = ''; 
 
-    inputDescripcion.value = ''; // Limpiar el campo de entrada
-
-    renderizarTareas(); // Renderizar nuevamente la lista de tareas
+    renderizarTareas(); 
 });
 
-// Función para borrar una tarea por su ID usando findIndex
+// Marcar una tarea como realizada por su ID
+function marcarComoRealizada(id, completada) {
+    const tarea = tareas.find(t => t.id === id);
+    if (tarea) {
+        tarea.realizada = completada;
+        renderizarTareas(); 
+    }
+}
+
+// Borrar una tarea por su ID
 function borrarTarea(id) {
-    const index = tareas.findIndex(tarea => tarea.id === id);
+    const index = tareas.findIndex(t => t.id === id);
     if (index !== -1) {
         tareas.splice(index, 1);
-        renderizarTareas(); // Renderizar nuevamente la lista de tareas
+        renderizarTareas(); 
     }
 }
 
-// Función para marcar una tarea como realizada por su ID
-function marcarComoRealizada(id) {
-    const tarea = tareas.find(tarea => tarea.id === id);
-    if (tarea) {
-        tarea.realizada = true;
-        renderizarTareas(); // Renderizar nuevamente la lista de tareas
-    }
-}
-
-// Función para actualizar el resumen de tareas
+// Resumen de tareas
 function actualizarResumen() {
     const totalTareas = tareas.length;
-    const tareasRealizadas = tareas.filter(tarea => tarea.realizada).length;
+    const tareasRealizadas = tareas.filter(t => t.realizada).length;
 
     totalTareasElement.textContent = totalTareas;
     tareasRealizadasElement.textContent = tareasRealizadas;
 }
 
-// Inicializar la lista de tareas al cargar la página
+
 renderizarTareas();

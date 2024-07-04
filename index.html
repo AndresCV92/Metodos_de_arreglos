@@ -3,46 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Tareas</title>
+    <title>Todo List</title>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
 
-    <div id="todolist">
-
-        <h2>Todo List</h2>
-
-        <!-- Formulario para agregar tareas -->
-        <form id="agregarTarea">
-            <input type="text" id="descripcion" placeholder="Descripción de la tarea">
-            <button type="submit">Agregar Tarea</button>
-        </form>
-
-        <div id="container">
-
-            <div id="resumenTareas">
-                <p>Total de tareas: <span id="totalTareas"></span></p>
-                <p>Tareas realizadas: <span id="tareasRealizadas"></span></p>
-            </div>
-
-            <div id="lista">
-                <!-- Lista de tareas -->
-              <ul id="listaTareas"></ul>
-            </div>
-        
-            
-
-        </div>
-
-        
+<div id="container">
+    <h2>Todo List</h2>
+    <hr>
     
 
+    <form id="agregar">
+        <input type="text" id="nuevaTarea" placeholder="Descripción de la tarea">
+        <button type="submit">Agregar Tarea</button>
+    </form>
 
+    <div id="resumenTareas">
+        <p>Total de tareas: <span id="totalTareas"></span></p>
+        <p>Tareas realizadas: <span id="tareasRealizadas"></span></p>
     </div>
-   
 
-   
-  
-    <script src="./assets/js/script.js"></script>
+    <div>
+        
+        <ul id="listaTareas"></ul>
+    </div>
+</div>
+
+<script src="./assets/js/script.js"></script>
 </body>
 </html>

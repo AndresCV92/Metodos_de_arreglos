@@ -1,57 +1,111 @@
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    min-height: 100vh; /* Asegura que el cuerpo ocupe al menos el 100% del viewport */
     margin: 0;
-    padding: 20px;
-}
-
-form{
-    width: 100%;
+    padding: 0;
     display: flex;
     justify-content: center;
-}
-
-input{
-    width: 30%;
-}
-
-#todolist{
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 100vw;
-    border: 1px solid red;
-    margin: 10px;
+    height: 100vh; 
+    background-color: #1e93a4; 
 }
 
-#container{
+#container {
+    background-color: #a6c3c6;
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px; 
+}
+
+
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+hr {
+    margin: 10px 0;
+    border-top: 1px solid #ba99a6;
+}
+
+
+form {
     display: flex;
-    flex-direction: row;
-    width: 100vw;
-    align-items:flex-end;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-#resumenTareas {
-    width: 20%;
-    background-color: #f0f0f0;
-    padding: 10px;
-    margin-top: auto; /* Empuja el resumen hacia la parte inferior */
+form input[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    flex: 1; /* El input se expandirá para ocupar todo el espacio restante */
 }
+
+form button {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
 
 #listaTareas {
     list-style-type: none;
     padding: 0;
-    margin: 20px 0;
 }
 
 #listaTareas li {
-    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
 }
 
-.realizado {
-    text-decoration: line-through;
-    color: gray;
+#listaTareas li label {
+    margin-left: 10px;
+    flex: 1;
+}
+
+#listaTareas li input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#listaTareas li .eliminar-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#listaTareas li .eliminar-btn:hover {
+    background-color: #d32f2f;
+}
+
+
+#resumenTareas {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#resumenTareas p {
+    margin: 5px;
+}
+
+
+#totalTareas, #tareasRealizadas {
+    font-weight: bold;
 }
